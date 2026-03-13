@@ -432,7 +432,7 @@ export default function App() {
               Building tighter, more reliable communities for off-campus students. Because the strongest communities start right outside your door.
             </p>
             <div className="text-sm">
-              Designed for <span className="text-white font-bold">CSE 440 · University of Washington</span>
+              Designed for <span className="text-white font-bold"><a href="https://courses.cs.washington.edu/courses/cse440/26wi/">CSE 440 · University of Washington</a></span>
             </div>
           </div>
           
