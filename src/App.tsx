@@ -461,75 +461,151 @@ export default function App() {
       {/* 7. FINAL DESIGN DEMO */}
       <section id="demo" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-extrabold font-display mb-4">The Final Design</h2>
-            <p className="text-slate-500">A mobile experience built for the modern student.</p>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Interactive Phone Frame */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative flex justify-center lg:justify-start"
+            >
+              {/* Decorative background blob */}
+              <div className="absolute -top-20 -left-20 w-64 h-64 bg-accent/30 rounded-full blur-3xl -z-10" />
+              
+              {/* Phone Frame */}
+              <div className="relative z-10 w-full max-w-[320px] aspect-[9/19.5] bg-slate-900 rounded-[3.5rem] p-3 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] border-[8px] border-slate-800">
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-slate-900 rounded-b-3xl z-30 flex items-center justify-center gap-2">
+                  <div className="w-2 h-2 bg-slate-800 rounded-full" />
+                  <div className="w-10 h-1 bg-slate-800 rounded-full" />
+                </div>
+                
+                {/* Side Buttons */}
+                <div className="absolute -left-2 top-24 w-1 h-12 bg-slate-800 rounded-l-md" />
+                <div className="absolute -left-2 top-40 w-1 h-12 bg-slate-800 rounded-l-md" />
+                <div className="absolute -right-2 top-32 w-1 h-16 bg-slate-800 rounded-r-md" />
 
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Screen 1 */}
-            <div className="flex flex-col items-center">
-              <div className="w-full max-w-[280px] aspect-[9/19] bg-slate-900 rounded-[3rem] p-3 shadow-2xl relative border-[6px] border-slate-800">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-900 rounded-b-2xl z-20" />
-                <div className="w-full h-full bg-white rounded-[2.2rem] overflow-hidden flex flex-col">
-                  <div className="h-12 bg-accent/20 flex items-center px-4 pt-4">
-                    <div className="w-8 h-8 bg-accent rounded-lg" />
-                  </div>
-                  <div className="p-4 flex-1 space-y-4">
-                    <div className="h-4 w-2/3 bg-slate-100 rounded-full" />
-                    <div className="h-32 w-full bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 flex items-center justify-center text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Home / Neighbor Feed</div>
-                    <div className="space-y-2">
-                      <div className="h-3 w-full bg-slate-100 rounded-full" />
-                      <div className="h-3 w-5/6 bg-slate-100 rounded-full" />
-                    </div>
+                {/* Screen / Iframe */}
+                <div className="w-full h-full bg-white rounded-[2.8rem] overflow-hidden relative z-20">
+                  <iframe 
+                    src="https://apartmateapp.vercel.app/" 
+                    className="border-none"
+                    style={{
+                      width: '150%',
+                      height: '150%',
+                      transform: 'scale(0.6666)',
+                      transformOrigin: 'top left',
+                    }}
+                    title="Apartmate App Demo"
+                    loading="lazy"
+                  />
+                  {/* Overlay for when iframe fails or to show placeholder */}
+                  <div className="absolute inset-0 bg-slate-50 flex flex-col items-center justify-center p-8 text-center pointer-events-none opacity-0 hover:opacity-100 transition-opacity bg-white/90">
+                    <Smartphone className="w-12 h-12 text-slate-300 mb-4" />
+                    <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Interactive Demo</p>
+                    <p className="text-xs text-slate-400 mt-2">Replace iframe src with your actual deployment URL</p>
                   </div>
                 </div>
               </div>
-              <h3 className="mt-8 font-bold text-xl">Home Feed</h3>
-              <p className="text-center text-slate-500 mt-2 text-sm px-4">See what's happening in your building and discover new events.</p>
-            </div>
 
-            {/* Screen 2 */}
-            <div className="flex flex-col items-center">
-              <div className="w-full max-w-[280px] aspect-[9/19] bg-slate-900 rounded-[3rem] p-3 shadow-2xl relative border-[6px] border-slate-800">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-900 rounded-b-2xl z-20" />
-                <div className="w-full h-full bg-white rounded-[2.2rem] overflow-hidden flex flex-col">
-                  <div className="h-12 bg-accent/20 flex items-center px-4 pt-4">
-                    <div className="w-8 h-8 bg-accent rounded-lg" />
+              {/* Floating Badge */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-8 -right-4 md:-right-8 bg-white p-5 rounded-2xl shadow-2xl border border-slate-100 max-w-[200px] z-30"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
+                    <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <div className="p-4 flex-1 space-y-4">
-                    <div className="h-4 w-2/3 bg-slate-100 rounded-full" />
-                    <div className="h-48 w-full bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 flex items-center justify-center text-[10px] text-slate-400 font-bold uppercase tracking-tighter text-center px-4">Interest Matching Screen</div>
-                    <div className="flex gap-2">
-                       <div className="h-8 w-8 bg-accent/30 rounded-full" />
-                       <div className="h-8 w-8 bg-accent/30 rounded-full" />
-                       <div className="h-8 w-8 bg-accent/30 rounded-full" />
-                    </div>
-                  </div>
+                  <span className="text-xs font-bold text-slate-800">Live Preview</span>
+                </div>
+                <p className="text-[10px] text-slate-500 leading-tight">Interact with the actual app prototype right here.</p>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Content & Actions */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">The Final Design</span>
+                <h2 className="text-4xl md:text-5xl font-extrabold font-display mb-6 leading-tight text-slate-900">
+                  Experience the <br />
+                  <span className="text-slate-400 italic">Apartmate App.</span>
+                </h2>
+                <p className="text-xl text-slate-600 leading-relaxed">
+                  Our high-fidelity prototype brings the Apartmate vision to life. Designed with the specific needs of UW students in mind, the app focuses on speed, ease of use, and low-pressure social interaction.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
+                    <MessageCircle className="w-5 h-5 text-accent" /> Async Messaging
+                  </h4>
+                  <p className="text-xs text-slate-500">Connect with neighbors on your own time without the pressure of instant replies.</p>
+                </div>
+                <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
+                    <Package className="w-5 h-5 text-accent" /> Resource Sharing
+                  </h4>
+                  <p className="text-xs text-slate-500">Keep track of items you've lent or borrowed with automated reminders.</p>
+                </div>
+                <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
+                    <Users className="w-5 h-5 text-accent" /> Interest Groups
+                  </h4>
+                  <p className="text-xs text-slate-500">Join building-specific groups based on your major, hobbies, or year.</p>
+                </div>
+                <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
+                    <Smartphone className="w-5 h-5 text-accent" /> UW Integration
+                  </h4>
+                  <p className="text-xs text-slate-500">Verified student access ensures a safe and reliable community environment.</p>
                 </div>
               </div>
-              <h3 className="mt-8 font-bold text-xl">Interest Matching</h3>
-              <p className="text-center text-slate-500 mt-2 text-sm px-4">Connect with neighbors who share your passions and hobbies.</p>
-            </div>
 
-            {/* Screen 3 */}
-            <div className="flex flex-col items-center">
-              <div className="w-full max-w-[280px] aspect-[9/19] bg-slate-900 rounded-[3rem] p-3 shadow-2xl relative border-[6px] border-slate-800">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-900 rounded-b-2xl z-20" />
-                <div className="w-full h-full bg-white rounded-[2.2rem] overflow-hidden flex flex-col">
-                  <div className="h-12 bg-accent/20 flex items-center px-4 pt-4">
-                    <div className="w-8 h-8 bg-accent rounded-lg" />
-                  </div>
-                  <div className="p-4 flex-1 space-y-4">
-                    <div className="h-4 w-2/3 bg-slate-100 rounded-full" />
-                    <div className="h-24 w-full bg-orange-50 rounded-2xl border-2 border-dashed border-orange-100 flex items-center justify-center text-[10px] text-orange-300 font-bold uppercase tracking-tighter text-center px-4">Item Borrow Request</div>
-                    <div className="h-10 w-full bg-slate-900 rounded-xl" />
-                  </div>
+              <div className="space-y-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Built With</p>
+                <div className="flex flex-wrap gap-3">
+                  {['React Native', 'Firebase', 'Tailwind CSS', 'Framer Motion', 'TypeScript'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-[10px] font-bold">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <h3 className="mt-8 font-bold text-xl">Resource Sharing</h3>
-              <p className="text-center text-slate-500 mt-2 text-sm px-4">Request to borrow items from neighbors in a simple, organized way.</p>
-            </div>
+
+              <div className="pt-6 flex flex-col sm:flex-row gap-4">
+                <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-lg shadow-slate-200">
+                  <Smartphone className="w-5 h-5" />
+                  Install Beta
+                </button>
+                <a 
+                  href="https://github.com/athenabao/Apartmate-App" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-50 transition-all"
+                >
+                  <Search className="w-5 h-5" />
+                  View Source Code
+                </a>
+              </div>
+
+              <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                <p className="text-sm text-slate-500 italic">
+                  "Apartmate has completely changed how I interact with my building. I finally feel like I belong here."
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-8 h-8 bg-slate-200 rounded-full" />
+                  <span className="text-xs font-bold text-slate-900">— UW Sophomore, Mercer Court</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
