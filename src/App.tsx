@@ -45,15 +45,16 @@ const DESIGN_PHASES = [
     icon: <PenTool className="w-6 h-6" />
   },
   { 
-    title: 'Evaluation & Pivots', 
-    desc: 'Shifted from a centralized physical design to a mobile-first async platform.',
-    icon: <CheckCircle2 className="w-6 h-6" />
+    title: 'Final Design', 
+    desc: 'Explore the high-fidelity mobile application.',
+    icon: <Smartphone className="w-6 h-6" />
   },
 ];
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activePhase, setActivePhase] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -312,34 +313,147 @@ export default function App() {
             <p className="text-slate-500">From initial research to final high-fidelity designs.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {/* Interactive Tabs */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             {DESIGN_PHASES.map((phase, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-slate-900 text-white rounded-xl flex items-center justify-center mb-6 font-bold text-lg">
+              <button
+                key={i}
+                onClick={() => {
+                  if (i === 4) {
+                    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    setActivePhase(i);
+                  }
+                }}
+                className={`px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-3 ${
+                  activePhase === i && i !== 4 
+                    ? 'bg-slate-900 text-white shadow-lg' 
+                    : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-100'
+                }`}
+              >
+                <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${activePhase === i && i !== 4 ? 'bg-accent text-slate-900' : 'bg-slate-100 text-slate-500'}`}>
                   {i + 1}
-                </div>
-                <div className="text-accent mb-4">{phase.icon}</div>
-                <h3 className="font-bold text-lg mb-3">{phase.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{phase.desc}</p>
-              </div>
+                </span>
+                <span className="hidden sm:inline">{phase.title}</span>
+                {i === 4 && <ArrowRight className="w-4 h-4 opacity-50" />}
+              </button>
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
-            <div className="placeholder-box h-64">
-              <div className="flex flex-col items-center gap-2">
-                <PenTool className="w-8 h-8 mb-2" />
-                <span className="font-bold">Ideation & Sketches</span>
-                <span className="text-xs text-slate-400 uppercase tracking-widest">Placeholder Image</span>
-              </div>
-            </div>
-            <div className="placeholder-box h-64">
-              <div className="flex flex-col items-center gap-2">
-                <Smartphone className="w-8 h-8 mb-2" />
-                <span className="font-bold">Paper Prototyping</span>
-                <span className="text-xs text-slate-400 uppercase tracking-widest">Placeholder Image</span>
-              </div>
-            </div>
+          {/* Tab Content */}
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-50 min-h-[400px]">
+            {activePhase === 0 && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-slate-800">
+                    <Search className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">User Research</h3>
+                    <p className="text-slate-500">Understanding the off-campus student experience.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Surveys (n=50)</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Quantitative data collection on social interaction frequency and common pain points in apartment living.</p>
+                  </div>
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Semi-structured Interviews</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Deep-dive sessions with 10 UW students to uncover emotional barriers to spontaneous connection.</p>
+                  </div>
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Contextual Inquiry</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Observational research in common areas to identify existing (and missing) social behaviors.</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activePhase === 1 && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-slate-800">
+                    <ClipboardList className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Key Findings</h3>
+                    <p className="text-slate-500">Synthesizing data into actionable insights.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-6 bg-slate-900 text-white rounded-2xl shadow-xl">
+                    <span className="text-4xl font-display font-black text-accent mb-4 block">85%</span>
+                    <h4 className="font-bold mb-2">Loneliness Rate</h4>
+                    <p className="text-sm text-slate-400">A vast majority of students feel isolated despite living in high-density buildings.</p>
+                  </div>
+                  <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 className="font-bold mb-2 text-slate-900">Fear of Rejection</h4>
+                    <p className="text-sm text-slate-500">The primary barrier to interaction is the perceived risk of an awkward face-to-face encounter.</p>
+                  </div>
+                  <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 className="font-bold mb-2 text-slate-900">Desire for Async</h4>
+                    <p className="text-sm text-slate-500">Students prefer low-stakes, mobile-first ways to initiate contact before meeting in person.</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activePhase === 2 && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-slate-800">
+                    <Lightbulb className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Ideation & Sketches</h3>
+                    <p className="text-slate-500">Brainstorming and prioritizing features.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="placeholder-box h-64">
+                      <PenTool className="w-8 h-8 opacity-20" />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Initial Brainstorming & Feature Mapping</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="placeholder-box h-64">
+                      <Search className="w-8 h-8 opacity-20" />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Feature Prioritization Matrix</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activePhase === 3 && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-slate-800">
+                    <Smartphone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">Paper Prototyping</h3>
+                    <p className="text-slate-500">Validating the core user flow with low-fi models.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="placeholder-box h-64">
+                      <Smartphone className="w-8 h-8 opacity-20" />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Low-fi Navigation Flow Testing</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="placeholder-box h-64">
+                      <Users className="w-8 h-8 opacity-20" />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">User Testing Session Feedback</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
