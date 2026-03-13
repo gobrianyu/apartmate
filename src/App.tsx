@@ -26,27 +26,27 @@ const TEAM_MEMBERS = [
 const DESIGN_PHASES = [
   { 
     title: 'User Research', 
-    desc: 'Surveys and interviews with off-campus UW students to understand their living experience.',
+    desc: 'To understand UW apartment living experience, we conducted 28 surveys and 3 interviews.',
     icon: <Search className="w-6 h-6" />
   },
   { 
     title: 'Key Findings', 
-    desc: 'Identified fear of rejection and desire for low-pressure connection tools.',
+    desc: 'Identified three themes around interaction frequency, access to social opportunities, and fear of spontaneous interaction.',
     icon: <ClipboardList className="w-6 h-6" />
   },
   { 
     title: 'Ideation & Sketches', 
-    desc: 'Brainstorming solutions that integrate into existing student behaviors.',
+    desc: 'Brainstormed solutions in the form of a mobile app, website platform, physical bulletin board, doorbell color indicators, and smart watch vibrations.',
     icon: <Lightbulb className="w-6 h-6" />
   },
   { 
-    title: 'Paper Prototyping', 
-    desc: 'Testing core flows with low-fidelity physical models to validate concepts.',
+    title: 'Paper & Digital Prototyping', 
+    desc: 'Tested core task flows with low-fidelity physical models, then iterated on high-fidelity Figma designs after usability testing.',
     icon: <PenTool className="w-6 h-6" />
   },
   { 
-    title: 'Final Design', 
-    desc: 'Explore the high-fidelity mobile application.',
+    title: 'Final Pitch', 
+    desc: 'Presented our final pitch and design walkthrough to stakeholders, receiving feedback on potential impact and future directions.',
     icon: <Smartphone className="w-6 h-6" />
   },
 ];
@@ -350,21 +350,17 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">User Research</h3>
-                    <p className="text-slate-500">Understanding the off-campus student experience.</p>
+                    <p className="text-slate-500">To understand UW apartment living experience, we conducted:</p>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <h4 className="font-bold mb-2">Surveys (n=50)</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">Quantitative data collection on social interaction frequency and common pain points in apartment living.</p>
+                    <h4 className="font-bold mb-2">28 surveys</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Collected broad input on apartment social behavior and community needs. Respondents were primarily sophomores, juniors, and seniors, with most living in multi-roommate units (typically 3-4 roommates)</p>
                   </div>
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <h4 className="font-bold mb-2">Semi-structured Interviews</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">Deep-dive sessions with 10 UW students to uncover emotional barriers to spontaneous connection.</p>
-                  </div>
-                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <h4 className="font-bold mb-2">Contextual Inquiry</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">Observational research in common areas to identify existing (and missing) social behaviors.</p>
+                    <h4 className="font-bold mb-2">3 interviews</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Gathered deeper qualitative insights into comfort levels, barriers, and social expectations. </p>
                   </div>
                 </div>
               </motion.div>
@@ -378,23 +374,15 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">Key Findings</h3>
-                    <p className="text-slate-500">Synthesizing data into actionable insights.</p>
+                    <p className="text-slate-500">Identified three themes:</p>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="p-6 bg-slate-900 text-white rounded-2xl shadow-xl">
-                    <span className="text-4xl font-display font-black text-accent mb-4 block">85%</span>
-                    <h4 className="font-bold mb-2">Loneliness Rate</h4>
-                    <p className="text-sm text-slate-400">A vast majority of students feel isolated despite living in high-density buildings.</p>
-                  </div>
-                  <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                    <h4 className="font-bold mb-2 text-slate-900">Fear of Rejection</h4>
-                    <p className="text-sm text-slate-500">The primary barrier to interaction is the perceived risk of an awkward face-to-face encounter.</p>
-                  </div>
-                  <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                    <h4 className="font-bold mb-2 text-slate-900">Desire for Async</h4>
-                    <p className="text-sm text-slate-500">Students prefer low-stakes, mobile-first ways to initiate contact before meeting in person.</p>
-                  </div>
+                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                  <ul className="list-disc pl-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                    <li>Most residents do not frequently interact with their neighbors, yet still consider themselves to be on neutral or positive terms.</li>
+                    <li>Residents express a strong desire for organized, intentional social events, but lack access to structured opportunities to participate. </li>
+                    <li>Despite sharing physical proximity in common areas, residents experience a problem where the fear of social rejection prevents spontaneous interaction without being prompted.</li>
+                  </ul>
                 </div>
               </motion.div>
             )}
@@ -407,22 +395,17 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">Ideation & Sketches</h3>
-                    <p className="text-slate-500">Brainstorming and prioritizing features.</p>
+                    <p className="text-slate-500">Brainstormed solutions that integrate into existing student behaviors, in the form of:</p>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <div className="placeholder-box h-64">
-                      <PenTool className="w-8 h-8 opacity-20" />
-                    </div>
-                    <p className="text-center text-sm font-bold text-slate-600 italic">Initial Brainstorming & Feature Mapping</p>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="placeholder-box h-64">
-                      <Search className="w-8 h-8 opacity-20" />
-                    </div>
-                    <p className="text-center text-sm font-bold text-slate-600 italic">Feature Prioritization Matrix</p>
-                  </div>
+                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                  <ul className="list-disc pl-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                    <li>Mobile app</li>
+                    <li>Website platform</li>
+                    <li>Physical bulletin board</li>
+                    <li>Doorbell color indicators</li>
+                    <li>Smart watch vibrations</li>
+                  </ul>
                 </div>
               </motion.div>
             )}
@@ -434,23 +417,36 @@ export default function App() {
                     <Smartphone className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold">Paper Prototyping</h3>
-                    <p className="text-slate-500">Validating the core user flow with low-fi models.</p>
+                    <h3 className="text-2xl font-bold">Paper & Digital Prototyping</h3>
+                    <p className="text-slate-500">Testing and iterating across fidelity levels.</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <div className="placeholder-box h-64">
-                      <Smartphone className="w-8 h-8 opacity-20" />
+                    <div className="rounded-2xl border border-slate-100 bg-white shadow-sm p-4">
+                      <img
+                        src="/assets/paper.png"
+                        alt="Paper prototype"
+                        className="w-full h-80 object-contain"
+                      />
                     </div>
-                    <p className="text-center text-sm font-bold text-slate-600 italic">Low-fi Navigation Flow Testing</p>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Paper Prototype</p>
                   </div>
                   <div className="space-y-4">
-                    <div className="placeholder-box h-64">
-                      <Users className="w-8 h-8 opacity-20" />
+                    <div className="rounded-2xl border border-slate-100 bg-white shadow-sm p-4">
+                      <img
+                        src="/assets/digitalprotoype.png"
+                        alt="Digital prototype"
+                        className="w-full h-80 object-contain"
+                      />
                     </div>
-                    <p className="text-center text-sm font-bold text-slate-600 italic">User Testing Session Feedback</p>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Digital Prototype</p>
                   </div>
+                </div>
+                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Testing core task flows with low-fidelity physical models to validate concepts, then iterating on high-fidelity Figma designs after usability testing.
+                  </p>
                 </div>
               </motion.div>
             )}
@@ -462,8 +458,8 @@ export default function App() {
       <section id="demo" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl font-extrabold font-display mb-4">The Final Design</h2>
-            <p className="text-slate-500">A mobile experience built for the modern student.</p>
+            <h2 className="text-4xl font-extrabold font-display mb-4">Final Pitch & Design Walkthrough</h2>
+            <p className="text-slate-500">Presented our final pitch and design walkthrough to stakeholders, receiving feedback on potential impact and future directions.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12">
