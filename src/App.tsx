@@ -17,10 +17,10 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const TEAM_MEMBERS = [
-  { name: 'Lucy He', role: 'UX Researcher & Designer' },
-  { name: 'Brian Yu', role: 'Product Manager & Designer' },
-  { name: 'Antonia Kwan', role: 'Interaction Designer' },
-  { name: 'Athena Bao', role: 'Visual Designer' },
+  { name: 'Brian Yu', role: 'Team Mate B', image: '/assets/brian.png' },
+  { name: 'Antonia Kwan', role: 'Team Mate A', image: '/assets/antonia.png' },
+  { name: 'Lucy He', role: 'Team Mate LL', image: '/assets/lucy.png' },
+  { name: 'Athena Bao', role: 'Team Mate A', image: '/assets/athena.png' },
 ];
 
 const DESIGN_PHASES = [
@@ -184,9 +184,11 @@ export default function App() {
                 className="text-center group"
               >
                 <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-100 rounded-full mx-auto mb-6 border-4 border-white shadow-md flex items-center justify-center overflow-hidden group-hover:border-accent transition-colors">
-                  <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
-                    <Users className="w-12 h-12" />
-                  </div>
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900">{member.name}</h3>
                 <p className="text-slate-500 font-medium">{member.role}</p>
