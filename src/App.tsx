@@ -68,7 +68,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-sm group-hover:rotate-12 transition-transform">
-              <Users className="text-slate-800 w-6 h-6" />
+              <img src="/AMlogo.png" alt="Apartmate logo" className="w-7 h-7 object-contain" />
             </div>
             <span className="text-xl font-extrabold tracking-tight font-display text-slate-900">Apartmate</span>
           </div>
