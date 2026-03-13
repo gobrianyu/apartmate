@@ -143,15 +143,12 @@ export default function App() {
           className="relative"
         >
           <div className="aspect-square bg-accent/20 rounded-[3rem] flex items-center justify-center p-12">
-            <div className="w-full h-full bg-white rounded-[2rem] shadow-2xl shadow-accent/20 flex items-center justify-center border-8 border-slate-50 relative overflow-hidden">
-              {/* SVG Logo Representation */}
-              <svg viewBox="0 0 200 200" className="w-48 h-48 text-slate-800">
-                <circle cx="100" cy="100" r="80" fill="#B8F0EE" fillOpacity="0.4" />
-                <path d="M60 140 L100 60 L140 140" stroke="currentColor" strokeWidth="12" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="100" cy="60" r="15" fill="currentColor" />
-                <circle cx="60" cy="140" r="15" fill="currentColor" />
-                <circle cx="140" cy="140" r="15" fill="currentColor" />
-              </svg>
+            <div className="w-full h-full bg-accent/30 rounded-[2rem] shadow-2xl shadow-accent/20 flex items-center justify-center border-8 border-slate-50 relative overflow-hidden">
+              <img
+                src="/assets/AMlogo.png"
+                alt="Apartmate logo"
+                className="w-56 h-56 object-contain"
+              />
               <div className="absolute bottom-8 left-0 right-0 text-center">
                 <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">Apartmate v1.0</span>
               </div>
