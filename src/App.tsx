@@ -280,18 +280,25 @@ export default function App() {
       <section className="section-padding bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold font-display mb-4">See it in Action</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold font-display mb-4">
+              See it in Action
+            </h2>
           </div>
-          <div className="placeholder-box aspect-video relative overflow-hidden group">
-            <div className="absolute inset-0 bg-slate-900/5 group-hover:bg-slate-900/0 transition-colors" />
-            <div className="flex flex-col items-center gap-4 relative z-10">
-              <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform cursor-pointer">
-                <Play className="w-8 h-8 text-slate-800 fill-current" />
-              </div>
-              <span className="text-xl font-bold text-slate-600">Concept Video Coming Soon</span>
-            </div>
+
+          <div className="aspect-video w-full overflow-hidden rounded-2xl shadow-lg">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/X7MYAHbzJyM"
+              title="Apartmate Concept Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
-          <p className="text-center mt-6 text-slate-500 font-medium italic">A short walkthrough of the Apartmate user experience and core features.</p>
+
+          <p className="text-center mt-6 text-slate-500 font-medium italic">
+            A short walkthrough of the Apartmate user experience and core features.
+          </p>
         </div>
       </section>
 
