@@ -716,7 +716,17 @@ export default function App() {
           <div>
             <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Team BALLA</h4>
             <ul className="space-y-3">
-              {TEAM_MEMBERS.map(m => <li key={m.name}>{m.name}</li>)}
+              {TEAM_MEMBERS.map(m => (
+                <li key={m.name}>
+                  {m.link ? (
+                    <a href={m.link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                      {m.name}
+                    </a>
+                  ) : (
+                    m.name
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
