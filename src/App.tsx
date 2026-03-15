@@ -4,11 +4,12 @@ import {
   MessageCircle, 
   Search, 
   ArrowRight, 
-  Play, 
+  ArrowDown, 
   Lightbulb, 
   ClipboardList, 
   PenTool, 
-  Smartphone, 
+  Smartphone,
+  Trophy, 
   CheckCircle2,
   Menu,
   X
@@ -17,7 +18,7 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const TEAM_MEMBERS = [
-  { name: 'Brian Yu', role: 'Team Mate B', image: '/assets/brian.png' },
+  { name: 'Brian Yu', role: 'Team Mate B', image: '/assets/brian.png', link: 'https://www.linkedin.com/in/gobrianyu/' },
   { name: 'Antonia Kwan', role: 'Team Mate A', image: '/assets/antonia.png' },
   { name: 'Lucy He', role: 'Team Mate LL', image: '/assets/lucy.png' },
   { name: 'Athena Bao', role: 'Team Mate A', image: '/assets/athena.png' },
@@ -120,7 +121,7 @@ export default function App() {
             UW CSE 440 Project
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold font-display leading-[1.1] mb-6 text-slate-900">
-            Your neighbors, <br />
+            Your neighbours, <br />
             <span className="text-slate-400">just a tap away.</span>
           </h1>
           <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-lg">
@@ -142,13 +143,28 @@ export default function App() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          <div className="aspect-square bg-accent/20 rounded-[3rem] flex items-center justify-center p-12">
-            <div className="w-full h-full bg-accent/30 rounded-[2rem] shadow-2xl shadow-accent/20 flex items-center justify-center border-8 border-slate-50 relative overflow-hidden">
+          {/* <div className="aspect-square bg-accent/20 rounded-[3rem] flex items-center justify-center p-12">
+            <div className="w-full h-full bg-accent/100 rounded-[2rem] shadow-2xl shadow-accent/20 flex items-center justify-center border-8 border-slate-50 relative overflow-hidden">
               <img
                 src="/assets/AMlogo.png"
                 alt="Apartmate logo"
                 className="w-56 h-56 object-contain"
               />
+              <div className="absolute bottom-8 left-0 right-0 text-center">
+                <span className="text-sm font-bold text-white tracking-widest uppercase">Apartmate v1.0</span>
+              </div>
+            </div>
+          </div> */}
+          <div className="aspect-square bg-accent/20 rounded-[3rem] flex items-center justify-center p-12">
+            <div className="w-full h-full bg-white rounded-[2rem] shadow-2xl shadow-accent/20 flex items-center justify-center border-8 border-slate-50 relative overflow-hidden">
+              <div className="w-64 h-64 bg-accent/30 rounded-full flex items-center justify-center shadow-inner">
+                <img 
+                  src="/assets/house-bell-grey.png" 
+                  alt="Apartmate Logo" 
+                  className="w-40 h-40 object-contain" 
+                  referrerPolicy="no-referrer" 
+                />
+              </div>
               <div className="absolute bottom-8 left-0 right-0 text-center">
                 <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">Apartmate v1.0</span>
               </div>
@@ -181,14 +197,29 @@ export default function App() {
                 whileHover={{ y: -10 }}
                 className="text-center group"
               >
-                <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-100 rounded-full mx-auto mb-6 border-4 border-white shadow-md flex items-center justify-center overflow-hidden group-hover:border-accent transition-colors">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900">{member.name}</h3>
+                {member.link ? (
+                  <a href={member.link} target="_blank" rel="noopener noreferrer" className="block">
+                  <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-100 rounded-full mx-auto mb-6 border-4 border-white shadow-md flex items-center justify-center overflow-hidden group-hover:border-accent transition-colors">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-accent transition-colors">{member.name}</h3>
+                    </a>
+                ) : (
+                  <>
+                    <div className="w-32 h-32 md:w-40 md:h-40 bg-slate-100 rounded-full mx-auto mb-6 border-4 border-white shadow-md flex items-center justify-center overflow-hidden group-hover:border-accent transition-colors">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900">{member.name}</h3>
+                  </>
+                )}
                 <p className="text-slate-500 font-medium">{member.role}</p>
               </motion.div>
             ))}
@@ -218,7 +249,7 @@ export default function App() {
           <div className="bg-white/5 backdrop-blur-sm p-10 rounded-[2.5rem] border border-white/10">
             <div className="mb-8">
               <span className="text-6xl font-display font-extrabold text-accent">85%</span>
-              <p className="text-xl text-slate-300 mt-2">of UW students living in apartments don't know their neighbors well.</p>
+              <p className="text-xl text-slate-300 mt-2">of UW students living in apartments don't know their neighbours well.</p>
             </div>
             <blockquote className="text-xl italic text-slate-100 border-l-4 border-accent pl-6 py-2">
               "I have met a lot of people in an unplanned way, but a lot of people wouldn't want to approach people who look like they are reserved... most of my spontaneous friendships have occurred because someone else approached me."
@@ -245,7 +276,7 @@ export default function App() {
               </div>
               <h3 className="text-2xl font-bold mb-4">Interest Matching</h3>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Find neighbors with shared hobbies without the awkward intros. Whether it's gaming, hiking, or cooking, Apartmate connects you with like-minded residents asynchronously.
+                Find neighbours with shared hobbies without the awkward intros. Whether it's gaming, hiking, or cooking, Apartmate connects you with like-minded residents asynchronously.
               </p>
             </div>
             <div className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-50">
@@ -254,7 +285,7 @@ export default function App() {
               </div>
               <h3 className="text-2xl font-bold mb-4">Item Lending</h3>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Missing baking soda for that late-night batch of cookies? Skip the trip to QFC and post a request instead. Borrow everyday items from neighbors who are happy to help.
+                Missing baking soda for that late-night batch of cookies? Skip the trip to QFC and post a request instead. Borrow everyday items from neighbours who are happy to help.
               </p>
             </div>
           </div>
@@ -315,24 +346,17 @@ export default function App() {
             {DESIGN_PHASES.map((phase, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  if (i === 4) {
-                    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    setActivePhase(i);
-                  }
-                }}
+                onClick={() => setActivePhase(i)}
                 className={`px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-3 ${
-                  activePhase === i && i !== 4 
+                  activePhase === i 
                     ? 'bg-slate-900 text-white shadow-lg' 
                     : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-100'
                 }`}
               >
-                <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${activePhase === i && i !== 4 ? 'bg-accent text-slate-900' : 'bg-slate-100 text-slate-500'}`}>
+                <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${activePhase === i ? 'bg-accent text-slate-900' : 'bg-slate-100 text-slate-500'}`}>
                   {i + 1}
                 </span>
                 <span className="hidden sm:inline">{phase.title}</span>
-                {i === 4 && <ArrowRight className="w-4 h-4 opacity-50" />}
               </button>
             ))}
           </div>
@@ -347,17 +371,17 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">User Research</h3>
-                    <p className="text-slate-500">To understand UW apartment living experience, we conducted:</p>
+                    <p className="text-slate-500">Better understanding the UW off-campus student experience.</p>
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <h4 className="font-bold mb-2">28 surveys</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">Collected broad input on apartment social behavior and community needs. Respondents were primarily sophomores, juniors, and seniors, with most living in multi-roommate units (typically 3-4 roommates)</p>
+                    <h4 className="font-bold mb-2">Surveys (n=28)</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">We collected quantitative data on apartment social interactions and community needs. Respondents were primarily sophomores, juniors, and seniors, with most living in multi-roommate units (typically 3-4 roommates)</p>
                   </div>
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <h4 className="font-bold mb-2">3 interviews</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">Gathered deeper qualitative insights into comfort levels, barriers, and social expectations. </p>
+                    <h4 className="font-bold mb-2">Semi-structured interviews</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Conducted deeper inquiries with 3 UW students to gather qualitative insights into comfort levels, barriers, and social expectations.</p>
                   </div>
                 </div>
               </motion.div>
@@ -371,15 +395,22 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">Key Findings</h3>
-                    <p className="text-slate-500">Identified three themes:</p>
+                    <p className="text-slate-500">Through our user research, we identified 3 key insights.</p>
                   </div>
                 </div>
-                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                  <ul className="list-disc pl-5 space-y-3 text-sm text-slate-600 leading-relaxed">
-                    <li>Most residents do not frequently interact with their neighbors, yet still consider themselves to be on neutral or positive terms.</li>
-                    <li>Residents express a strong desire for organized, intentional social events, but lack access to structured opportunities to participate. </li>
-                    <li>Despite sharing physical proximity in common areas, residents experience a problem where the fear of social rejection prevents spontaneous interaction without being prompted.</li>
-                  </ul>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Neighbours, but not connections.</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed"><b>85%</b> of students report low interaction with neighbours, yet <b>96%</b> describe relationships as neutral or positive. Most residents coexist peacefully but rarely form meaningful connections beyond their own apartment units.</p>
+                  </div>
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Interest in events, but low participation.</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed"><b>50%</b> of residents have never attended a building event, yet <b>75%</b> say they would attend if events were better organized, scheduled, or promoted. Students want structured opportunities to meet neighbours but rarely initiate them themselves.</p>
+                  </div>
+                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <h4 className="font-bold mb-2">Fear of rejection limits interaction.</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">Although <b>59%</b> use common areas weekly or daily, most avoid approaching others due to uncertainty about whether interaction is welcome. Without clear signals, students hesitate to start conversations with neighbours.</p>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -392,17 +423,32 @@ export default function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold">Ideation & Sketches</h3>
-                    <p className="text-slate-500">Brainstormed solutions that integrate into existing student behaviors, in the form of:</p>
+                    <p className="text-slate-500">Brainstormed solutions that integrate into existing student behaviours.</p>
                   </div>
                 </div>
-                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                  <ul className="list-disc pl-5 space-y-3 text-sm text-slate-600 leading-relaxed">
-                    <li>Mobile app</li>
-                    <li>Website platform</li>
-                    <li>Physical bulletin board</li>
-                    <li>Doorbell color indicators</li>
-                    <li>Smart watch vibrations</li>
-                  </ul>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="rounded-3xl border border-slate-100 shadow-sm">
+                      <img 
+                        src="/assets/sketches1.png" 
+                        alt="Initial Brainstorming & Feature Mapping" 
+                        className="w-full h-auto block rounded-3xl"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Initial Brainstorming & Feature Mapping</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="rounded-3xl border border-slate-100 shadow-sm">
+                      <img 
+                        src="/assets/sketches2.png" 
+                        alt="Feature Prioritization Matrix" 
+                        className="w-full h-auto block rounded-3xl"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <p className="text-center text-sm font-bold text-slate-600 italic">Feature Prioritization Matrix</p>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -447,6 +493,42 @@ export default function App() {
                 </div>
               </motion.div>
             )}
+
+            {activePhase === 4 && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-slate-800">
+                    <MessageCircle className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold">The Final Pitch</h3>
+                    <p className="text-slate-500">Presenting our journey to peers and mentors.</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                  <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-100 bg-slate-50">
+                    <img 
+                      src="/assets/final_pitch.jpg" 
+                      alt="Final Pitch Session" 
+                      className="w-full h-auto block rounded-3xl"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div className="space-y-6">
+                    <h4 className="text-2xl font-bold text-slate-900">Presenting Apartmate</h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      During the final pitch session, we showcased how Apartmate addresses the "loneliness epidemic" in off-campus housing. We demonstrated our core features: interest matching and resource sharing, highlighting how our asynchronous model reduces social friction for students.
+                    </p>
+                    <button 
+                      onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
+                    >
+                      See our final design <ArrowDown className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
@@ -462,6 +544,7 @@ export default function App() {
               viewport={{ once: true }}
               className="relative flex justify-center lg:justify-start"
             >
+            <div className="relative">
               {/* Decorative background blob */}
               <div className="absolute -top-20 -left-20 w-64 h-64 bg-accent/30 rounded-full blur-3xl -z-10" />
               
@@ -505,7 +588,7 @@ export default function App() {
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-8 -right-4 md:-right-8 bg-white p-5 rounded-2xl shadow-2xl border border-slate-100 max-w-[200px] z-30"
+                className="absolute -bottom-15 -right-4 md:-right-35 bg-white p-5 rounded-2xl shadow-2xl border border-slate-100 max-w-[200px] z-30"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
@@ -515,6 +598,7 @@ export default function App() {
                 </div>
                 <p className="text-[10px] text-slate-500 leading-tight">Interact with the actual app prototype right here.</p>
               </motion.div>
+              </div>
             </motion.div>
 
             {/* Right: Content & Actions */}
@@ -540,7 +624,7 @@ export default function App() {
                   <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
                     <MessageCircle className="w-5 h-5 text-accent" /> Async Messaging
                   </h4>
-                  <p className="text-xs text-slate-500">Connect with neighbors on your own time without the pressure of instant replies.</p>
+                  <p className="text-xs text-slate-500">Connect with neighbours on your own time without the pressure of instant replies.</p>
                 </div>
                 <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
                   <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
@@ -556,9 +640,9 @@ export default function App() {
                 </div>
                 <div className="group p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-accent/50 transition-colors">
                   <h4 className="font-bold text-slate-900 flex items-center gap-2 mb-2">
-                    <Smartphone className="w-5 h-5 text-accent" /> UW Integration
+                    <Smartphone className="w-5 h-5 text-accent" /> Building Integration
                   </h4>
-                  <p className="text-xs text-slate-500">Verified student access ensures a safe and reliable community environment.</p>
+                  <p className="text-xs text-slate-500">Verified resident access ensures a safe and reliable community environment.</p>
                 </div>
               </div>
 
@@ -574,28 +658,36 @@ export default function App() {
               </div>
 
               <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-lg shadow-slate-200">
-                  <Smartphone className="w-5 h-5" />
-                  Install Beta
-                </button>
                 <a 
                   href="https://github.com/athenabao/Apartmate-App" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
+                >
+                  <Smartphone className="w-5 h-5" />
+                  Beta Repo
+                </a>
+                <a 
+                  href="https://github.com/gobrianyu/apartmate" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-50 transition-all"
                 >
                   <Search className="w-5 h-5" />
-                  View Source Code
+                  Site Source Code
                 </a>
               </div>
 
-              <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                <p className="text-sm text-slate-500 italic">
-                  "Apartmate has completely changed how I interact with my building. I finally feel like I belong here."
-                </p>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-slate-200 rounded-full" />
-                  <span className="text-xs font-bold text-slate-900">— UW Sophomore, Mercer Court</span>
+              <div className="p-6 bg-accent/50 rounded-3xl border border-accent/20 flex items-start gap-4">
+                <div className="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-slate-900 shrink-0 shadow-lg shadow-accent/20">
+                  <Trophy className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 mb-1">The "I Needed This :')" Friend Award</h4>
+                  <p className="text-xs text-slate-600 font-medium mb-2">Best Social Computing Design · 2026</p>
+                  <p className="text-sm text-slate-500 italic leading-relaxed">
+                    Recognised for excellence in creating low-friction social connections that address real student needs.
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -608,8 +700,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center">
-                <Users className="text-slate-800 w-6 h-6" />
+              <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center overflow-hidden">
+                <img src="/assets/AMlogo-dark-blue.png" alt="Apartmate Logo" className="w-7 h-7 object-contain" referrerPolicy="no-referrer" />
               </div>
               <span className="text-2xl font-extrabold tracking-tight font-display text-white">Apartmate</span>
             </div>
